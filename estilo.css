@@ -1,0 +1,802 @@
+@import url('https://fonts.cdnfonts.com/css/minecraftia');
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    backdrop-filter: blur(10px);
+    transition: all 1s ease;
+    box-shadow: inset 1px -50px 100px black;
+    font-family: 'Minecraftia', sans-serif;
+}
+
+.container-slider{
+    position: relative;
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+    bottom: 30px;
+    transition: all 2s ease;
+}
+
+.slider{
+    display: flex;
+    width: 1000%;
+    height: 85vh;
+    margin-left: -100%;
+    transition: all 2s ease;
+}
+
+.slider__section{
+    width: 100%;
+}
+
+.slider__img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider__btn{
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
+    cursor: pointer;
+    transition: all 1s ease;
+    user-select: none;
+}
+
+.slider__btn--left{
+    left: 0px;
+    background: linear-gradient(to right, rgba(78, 223, 255, 0.8) -100%, transparent 100%);
+    opacity: .5;
+}
+
+.slider__btn--left:hover{
+    background: linear-gradient(to right, rgba(78, 223, 255, 0.8) -100%, transparent 100%);
+    opacity: 1;
+}
+
+.slider__btn--right{
+    right: 0px;
+    background: linear-gradient(to left, rgba(78, 223, 255, 0.8) -100%, transparent 100%);
+    opacity: .5;
+}
+
+.slider__btn--right:hover{
+    background: linear-gradient(to left, rgba(78, 223, 255, 0.8) -100%, transparent 100%);
+    opacity: 1;
+}
+
+.contenedor-titulo{
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    opacity: 0;
+    transition: all 2.5s ease-out;
+}
+
+.contenedor-titulo-activado{
+    opacity: 1;
+    left: 90px;
+    user-select: none;
+}
+
+.titulo-seccion{
+    position: relative;
+    font-size: 20px;
+    color: white;
+    transition: all 2.5s ease-out;
+    left: 10px;
+}
+
+.icono-animacion{
+    position: absolute;
+    background-image: url(gif-animacion/icono1.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    left: -50px;
+    bottom: -10px;
+    transition: all 1s ease;
+}
+
+.decoracion-titulo{
+    position: absolute;
+    background-color: white;
+    width: 0px;
+    height: 3px;
+    bottom: -5px;
+    left: 0px;
+    transition: all 2s ease;
+}
+
+.decoracion-titulo-activado{
+    width: 260px;
+}
+
+
+.texto-seccion{
+    position: absolute;
+    width: 500px;
+    font-family: 'Minecraftia', sans-serif;
+    color: white;
+    font-size: 12px;
+    bottom: 30px;
+    right: 0px;
+    opacity: 0;
+    transition: all 2.5s ease-out;
+}
+
+.texto-seccion-activado{
+    right: 50px;
+    opacity: 1;
+    user-select: none;
+}
+
+.titulo-imagen,
+.descripcion-imagen,
+.movil-imagen,
+.movil-titulo-imagen,
+.movil-descripcion-imagen{
+    display: none;
+}
+
+
+.btn-pausa{
+    position: absolute;
+    background-image: url(botones/boton-pausa.png);
+    width: 30px;
+    height: 33px;
+    left: 40%;
+    bottom: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn-pausa::after{
+    content: 'Avance Automatico';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    width: 400px;
+    bottom: -18px;
+    opacity: 0;
+    transition: all 1.2s ease;
+    pointer-events: none;
+}
+
+.btn-pausa:hover::after{
+    opacity: 1;
+} 
+
+.btn-avance{
+    background-image: url(botones/boton-avance.png);
+}
+
+.btn-tamaño{
+    position: absolute;
+    background-image: url(botones/boton-agrandar.png);
+    width: 30px;
+    height: 33px;
+    left: 50%;
+    bottom: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn-tamaño-reducir{
+    background-image: url(botones/boton-reducir.png);
+}
+
+.btn-tamaño::after{
+    content: 'Cambiar Tamaño';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    width: 400px;
+    bottom: -18px;
+    opacity: 0;
+    transition: all 1.2s ease;
+    pointer-events: none;
+}
+
+.btn-tamaño:hover::after{
+    opacity: 1;
+} 
+
+.container-slider-agrandado{
+    width: 100%;
+    bottom: 0px;
+}
+
+.slider-agrandado{
+    height: 100vh;
+}
+
+.degradado-oscuro-slider{
+    position: absolute;
+    background-image: linear-gradient(to top, black 10%, transparent);
+    width: 100%;
+    height: 100px;
+    bottom: 0px;
+    display: none;
+    transition: all 1s ease
+}
+
+.degradado-oscuro-slider-agrandado{
+    display: block;
+}
+
+
+.btn-recargar{
+    position: absolute;
+    background-image: url(botones/boton-recargar.png);
+    width: 44px;
+    height: 44px;
+    left: 48%;
+    top: -50px;
+    cursor: pointer;
+    transition: all 1s ease;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn-recargar:hover{
+    transform: translateY(-10px);
+}
+
+.btn-recargar:hover::after{
+    content: 'Recargar Imagenes';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    left: 50%;
+    width: 149px;
+    transform: translate(-50%, -50%);
+    bottom: -30px;
+    transition: all 1s ease;
+}
+
+.btn-recargar-activado{
+    top: 30px;
+    opacity: 100;
+    pointer-events: all;
+}
+
+
+.btn-creditos{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: solid 2px white;
+    left: 5px;
+    top: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .6;
+    box-shadow: 0px 0px 20px rgb(60, 232, 251);
+    transition: all 1s ease;
+}
+
+.btn-creditos:hover{
+    border-color: rgb(0, 250, 254);
+    opacity: .8;
+}
+
+.btn-creditos::after{
+    content: '';
+    background-color: white;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.modal-creditos{
+    position: absolute;
+    background-color: rgba(0, 0, 0, .7);
+    width: 800px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 25px;
+    opacity: 0;
+    transition: all 1s ease;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.modal-creditos-activado{
+    opacity: 1;
+}
+
+.texto-modal{
+    color: white;
+    font-size: 16px;
+}
+
+.enlace-pixel{
+    text-decoration: none;
+    color: white;
+    text-shadow: 0px 0px 20px white;
+}
+
+.decoracion-modal{
+    position: absolute;
+}
+
+.decoracion-modal-1{
+    left: 20px;
+    bottom: 20px;
+}
+
+.decoracion-modal-2{
+    top: 20px;
+    right: 20px;
+}
+
+.decoracion-modal-3{
+    left: 20px;
+    top: 20px;
+}
+
+.decoracion-modal-4{
+    right: 20px;
+    bottom: 20px;
+}
+
+.bloqueo-pantalla{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    pointer-events: none;
+    transition: all 1s ease;
+}
+
+.bloqueo-pantalla-activado{
+    opacity: .4;
+    background-color: black;
+    pointer-events: all;
+}
+
+
+
+@media (max-width: 719px){
+
+    .container-slider{
+        margin-top: 50px;
+    }
+    
+    .slider{
+        height: 80vh;
+    }
+
+    .slider__btn{
+        width: 50px;
+    }
+
+    .contenedor-titulo{
+        left: 0px;
+        opacity: 1;
+        bottom: 65px;
+    }
+
+    .contenedor-titulo-activado{
+        left: 60px;
+        bottom: 65px;
+    }
+
+    .titulo-seccion{
+        font-size: 12px;
+        left: 5px;
+        bottom: 5px;
+    }
+
+    .decoracion-titulo-activado{
+        width: 100px;
+    }
+
+    .texto-seccion{
+        width: 130px;
+        right: 0px;
+        bottom: 55px;
+        font-size: 10px;
+    }
+
+    .texto-seccion-activado{
+        right: 15px;
+    }
+
+
+    .btn-pausa,
+    .btn-avance,
+    .btn-tamaño,
+    .btn-tamaño-reducir{
+        width: 20px;
+        height: 22px;
+    }
+
+    .btn-pausa{
+        background-image: url(botones/boton-pausa-movil.png);
+        left: 60px;
+        bottom: 20px;
+    }
+
+    .btn-avance{
+        background-image: url(botones/boton-avance-movil.png);
+    }
+
+    .btn-pausa::after{
+        font-size: 9px;
+        width: 120px;
+        bottom: -15px;
+    }
+    
+    .btn-tamaño{
+        background-image: url(botones/boton-agrandar-movil.png);
+        left: 140px;
+        bottom: 20px;
+    }
+
+    .btn-tamaño-reducir{
+        background-image: url(botones/boton-reducir-movil.png);
+    }
+
+    .btn-tamaño::after{
+        font-size: 9px;
+        width: 90px;
+        bottom: -15px; 
+    }
+
+    .container-slider-agrandado{
+        width: 100%;
+        bottom: 0px;
+        margin-top: 0px;
+    }
+    
+    .slider-agrandado{
+        height: 100vh;
+    }
+
+    .btn-recargar{
+        left: 46%;
+    }
+
+    .btn-recargar:hover::after{
+        font-size: 9px;
+        left: 50%;
+        width: 112px;
+    }
+
+    .modal-creditos{
+        width: 300px;
+        height: 300px;
+    }
+
+    .texto-modal{
+        font-size: 12px;
+    }
+
+    .decoracion-modal{
+        opacity: .2;
+    }
+
+    .decoracion-modal-1{
+        src: url(decoracion/decoracion-1-movil.png);
+    }
+
+    .decoracion-modal-2{
+        src: url(decoracion/decoracion-2-movil.png);
+    }
+
+    .decoracion-modal-3{
+        src: url(decoracion/decoracion-3-movil.png);
+    }
+
+    .decoracion-modal-4{
+        src: url(decoracion/decoracion-4-movil.png);
+    }
+
+}
+
+
+@media (min-width: 720px) and (max-width:1299px){
+
+
+    .container-slider{
+        margin-top: 60px;
+        width: 90%;
+    }
+
+    .contenedor-titulo{
+        bottom: 100px;
+    }
+
+    .titulo-seccion{
+        font-size: 27px;
+    }
+    
+    .decoracion-titulo{
+        width: 220px;
+        height: 5px;
+    }
+
+    .texto-seccion{
+        width: 200px;
+        font-size: 17px;
+        bottom: 80px;
+    }
+    
+    .btn-pausa,
+    .btn-avance,
+    .btn-tamaño,
+    .btn-tamaño-reducir{
+        width: 40px;
+        height: 44px;
+    }
+
+    .btn-pausa{
+        background-image: url(botones/boton-pausa-tablet.png);
+        left: 220px;
+    }
+
+    .btn-pausa::after{
+        width: 180px;
+    }
+    
+    .btn-avance{
+        background-image: url(botones/boton-avance-tablet.png);
+    }
+
+    .btn-tamaño{
+        background-image: url(botones/boton-agrandar-tablet.png);
+    }
+
+    .btn-tamaño-reducir{
+        background-image: url(botones/boton-reducir-tablet.png);
+    }
+
+    .btn-tamaño::after{
+        width: 180px;
+    }
+
+    .container-slider-agrandado{
+        width: 100%;
+        bottom: 0px;
+        margin-top: 0px;
+    }
+    
+    .slider-agrandado{
+        height: 100vh;
+    }
+
+    .btn-recargar{
+        background-image: url(botones/boton-recargar-tablet.png);
+        width: 66px;
+        height: 66px;
+        left: 46%;
+        top: -70px;
+    }
+
+    .btn-recargar:hover::after{
+        font-size: 14px;
+        bottom: -40px;
+        width: 180px;
+    }
+
+    .btn-recargar-activado{
+        top: 40px;
+    }
+
+    .modal-creditos{
+        width: 600px;
+        height: 600px;
+    }
+
+    .texto-modal{
+        font-size: 22px;
+    }
+
+    .decoracion-modal{
+        opacity: 1;
+    }
+    
+    .decoracion-modal-1{
+        src: url(decoracion/decoracion-1.png);
+    }
+
+    .decoracion-modal-2{
+        src: url(decoracion/decoracion-2.png);
+    }
+
+    .decoracion-modal-3{
+        src: url(decoracion/decoracion-3.png);
+    }
+
+    .decoracion-modal-4{
+        src: url(decoracion/decoracion-4.png);
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1919px){
+    
+    .texto-seccion{
+        width: 250px;
+        font-size: 14px;
+    }
+
+    .texto-seccion-activado{
+        right: 70px;
+    }
+
+    .btn-recargar{
+        background-image: url(botones/boton-recargar.png);
+        width: 44px;
+        height: 44px;
+        left: 49%;
+    }
+
+    .texto-modal{
+        font-size: 22px;
+    }
+
+    .decoracion-modal{
+        opacity: 1;
+    }
+    
+    .decoracion-modal-1{
+        src: url(decoracion/decoracion-1.png);
+    }
+
+    .decoracion-modal-2{
+        src: url(decoracion/decoracion-2.png);
+    }
+
+    .decoracion-modal-3{
+        src: url(decoracion/decoracion-3.png);
+    }
+
+    .decoracion-modal-4{
+        src: url(decoracion/decoracion-4.png);
+    }
+}
+
+
+@media (min-width: 1920px){
+
+    .contenedor-titulo{
+        bottom: 55px;
+    }
+
+    .contenedor-titulo-activado{
+        left: 120px;
+    }
+    
+    .titulo-seccion{
+        font-size: 27px;
+    }
+
+    .decoracion-titulo{
+        height: 5px;
+    }
+
+    .texto-seccion{
+        width: 270px;
+        font-size: 15px;
+        bottom: 40px;
+    }
+
+    .texto-seccion-activado{
+        right: 200px;
+    }
+
+    .btn-pausa,
+    .btn-avance,
+    .btn-tamaño,
+    .btn-tamaño-reducir{
+        width: 40px;
+        height: 44px;
+    }
+
+    .btn-pausa{
+        background-image: url(botones/boton-pausa-tablet.png);
+        bottom: 35px;
+    }
+
+    .btn-pausa::after{
+        width: 180px;
+        font-size: 15px;
+        bottom: -25px;
+    }
+    
+    .btn-avance{
+        background-image: url(botones/boton-avance-tablet.png);
+    }
+
+    .btn-tamaño{
+        background-image: url(botones/boton-agrandar-tablet.png);
+        bottom: 35px;
+    }
+
+    .btn-tamaño-reducir{
+        background-image: url(botones/boton-reducir-tablet.png);
+    }
+
+    .btn-tamaño::after{
+        width: 180px;
+        font-size: 15px;
+        bottom: -25px;
+    }
+
+    .btn-recargar{
+        background-image: url(botones/boton-recargar-tablet.png);
+        width: 66px;
+        height: 66px;
+        left: 49%;
+    }
+
+    .btn-recargar:hover::after{
+        font-size: 16px;
+        bottom: -40px;
+        width: 205px;
+    }
+
+    .btn-recargar-activado{
+        top: 70px;
+    }
+
+    .texto-modal{
+        font-size: 22px;
+    }
+
+    .decoracion-modal{
+        opacity: 1;
+    }
+    
+    .decoracion-modal-1{
+        src: url(decoracion/decoracion-1.png);
+    }
+
+    .decoracion-modal-2{
+        src: url(decoracion/decoracion-2.png);
+    }
+
+    .decoracion-modal-3{
+        src: url(decoracion/decoracion-3.png);
+    }
+
+    .decoracion-modal-4{
+        src: url(decoracion/decoracion-4.png);
+    }
+}
